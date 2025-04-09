@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Gerador CPF</title>
+<!-- Materialize CDN  CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!-- Materialize CDN JavaScript -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="titulo">
+			<h1>Gerador de CPF</h1>
+		</div>
+		<br> <br>
+		<form action="#" onsubmit="return validarCampos() ? true : false" 
+			method="post" class="col s12">
+			<div id="mensagemErro" th:text="${msgErro}" style="color: red;"></div>
+			<div class="row cpfale">
+				<div class="input-field col s6">
+					<label for="cpf" class="active">Gerar CPF aleátorio</label> 
+					<input id="cpf" name="cpf" th:value="${cpfAle}">
+				</div>
+
+				<div class="input-field col s6">
+					<label for="uf" class="active">Escolha o Estado</label> <select
+						id="uf" name="uf">
+						<option value="-1">Selecione um estado</option>
+						<option value="1">Distrito Federal</option>
+						<option value="1">Goiás</option>
+						<option value="1">Mato Grosso</option>
+						<option value="1">Mato Grosso do Sul</option>
+						<option value="1">Tocantins</option>
+						<option value="2">Pará</option>
+						<option value="2">Amazonas</option>
+						<option value="2">Acre</option>
+						<option value="2">Amapá</option>
+						<option value="2">Rondônia</option>
+						<option value="2">Roraima</option>
+						<option value="3">Ceará</option>
+						<option value="3">Maranhão</option>
+						<option value="3">Piauí</option>
+						<option value="4">Pernambuco</option>
+						<option value="4">Rio Grande do Norte</option>
+						<option value="4">Paraíba</option>
+						<option value="4">Alagoas</option>
+						<option value="5">Bahia</option>
+						<option value="5">Sergipe</option>
+						<option value="6">Minas Gerais</option>
+						<option value="7">Rio de Janeiro</option>
+						<option value="7">Espírito Santo</option>
+						<option value="8">São Paulo</option>
+						<option value="9">Paraná</option>
+						<option value="9">Santa Catarina</option>
+						<option value="0">Rio Grande do Sul</option>
+					</select>
+				</div>
+			</div>
+			<div class="row pontuacao">
+				<label class="active">CPF com pontuação?</label> 
+				<label> 
+					<input class="with-gap" name="pontuacao" id="pontuacao" type="radio" 
+						value="sim" checked /> 
+					<span>Sim</span>
+				</label> 
+				<label> 
+					<input class="with-gap" name="pontuacao" id="pontuacao" type="radio" 
+						value="nao" /> 
+					<span>Não</span>
+				</label>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<input class="waves-effect waves-light btn" type="submit"
+						id="btnGerar" name="acao" value="Gerar">
+					<input class="waves-effect waves-light btn" type="submit" 
+						id="btnValidar" name="acao" value="validar">
+				</div>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript">
+		//pegando qual botão foi clicado
+		botaoClicado = "";
+		document.getElementById("btnGerar").addEventListener("click", () => {
+			  botaoClicado = "Gerar";
+			});
+		document.getElementById("btnValidar").addEventListener("click", () => {
+			  botaoClicado = "validar";
+			});
+		
+		/*Validando campo para o botão "validar" */
+		function validarCampos() {
+			if(botaoClicado == "validar"){
+				const cpfDigitado = document.getElementById('cpf').value
+						.trim();
+				const mensagemErro = document.getElementById('mensagemErro');
+	
+				/* Valida vazio, numeros e tamanho */
+				if (!(/^\d{9}$/.test(cpfDigitado))) {
+					mensagemErro.innerHTML = "Formato inválido! <br> OBS: Digite apenas numero, e certifique-se de que há 9 dígitos.";
+					return false;
+				}
+			}
+			return true;
+		}
+
+		// ESTE BLOCO INICIALIZA O SELECT
+		document.addEventListener('DOMContentLoaded', function() {
+			var elems = document.querySelectorAll('select');
+			M.FormSelect.init(elems);
+		});
+	</script>
+</body>
+</html>
