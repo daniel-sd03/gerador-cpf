@@ -19,11 +19,12 @@ public class GeradorCpfService {
 		}else {
 			cpf.append(randon.nextInt(10));	
 		}
-					
-		return validaCpf(cpf,pontuacao);
+		String cpfCompleto = validaCpf(cpf.toString());
+		cpfCompleto = gerarPontuacao(cpfCompleto, pontuacao);
+		return cpfCompleto;
 	}
 	
-	public String validaCpf(StringBuilder cpf, String pontuacao) {
+	public String validaCpf(String cpf) {
 		int somaTotal = 0;
 		int pos = 10;
 		int primeiroDigVerif;
@@ -50,11 +51,15 @@ public class GeradorCpfService {
 			segundoDigVerif = 0;
 		}
 		
-		cpf.append(primeiroDigVerif).append(segundoDigVerif);
-		
+		//Adicionando digitos ao corpo do cpf
+		cpf = cpf+""+(primeiroDigVerif)+""+(segundoDigVerif);
+		return cpf;
+	}
+	
+	public String gerarPontuacao(String cpf, String pontuacao) {
 		if(pontuacao.equalsIgnoreCase("sim")) {
-			return  cpf.substring(0, 3)+"."+cpf.substring(3, 6)+ "."+cpf.substring(6, 9)+"."+cpf.subSequence(9, 11);
+			return  cpf.substring(0, 3)+"."+cpf.substring(3, 6)+ "."+cpf.substring(6, 9)+"."+cpf.substring(9, 11);
 		}
-		return cpf.toString();
+		return cpf;
 	}
 }
