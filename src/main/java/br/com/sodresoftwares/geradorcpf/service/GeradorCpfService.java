@@ -1,5 +1,7 @@
 package br.com.sodresoftwares.geradorcpf.service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.stereotype.Service;
@@ -54,6 +56,21 @@ public class GeradorCpfService {
 		//Adicionando digitos ao corpo do cpf
 		cpf = cpf+""+(primeiroDigVerif)+""+(segundoDigVerif);
 		return cpf;
+	}
+	
+	public Map<String, String> gerarDigitosCpf(String cpf,String pontuacao) {
+
+		//validando cpf
+		String cpfGerado = validaCpf(cpf.substring(0,9));
+		//verificando se foi modificado
+		boolean isModificado = !cpfGerado.equalsIgnoreCase(cpf);
+		cpfGerado = gerarPontuacao(cpfGerado, pontuacao);
+		//Mapeando dados do cpf
+		Map<String, String> cpfDados = new HashMap<>();
+		cpfDados.put("cpf", cpfGerado);
+		cpfDados.put("isModificado", String.valueOf(isModificado));
+		
+		return cpfDados;
 	}
 	
 	public String gerarPontuacao(String cpf, String pontuacao) {

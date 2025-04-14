@@ -1,5 +1,7 @@
 package br.com.sodresoftwares.geradorcpf.controller;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,11 +28,26 @@ public class GeradorCpfController {
 	@PostMapping("/gerar-cpf-aleatorio")
 	public String gerarCpfAleatorio(RedirectAttributes redirectAttributes,
 									@RequestParam("acao")String acao, @RequestParam("uf")String uf,
-									@RequestParam("pontuacao") String pontuacao) {
+									@RequestParam("pontuacao") String pontuacao,
+									@RequestParam("cpf")String cpfDigitado) {
+		String cpf;
 		if(acao.equalsIgnoreCase("gerar")) {
 			/*Gerando CPF Aleatorio*/
-			String cpf = geradorCpfService.gerarCpfAleatorio(uf,pontuacao);
-			redirectAttributes.addFlashAttribute("cpfAle", cpf);
+			 cpf = geradorCpfService.gerarCpfAleatorio(uf,pontuacao);
+			redirectAttributes.addFlashAttribute("cpf", cpf);
+		
+		}else if (acao.equalsIgnoreCase("validar")) {
+			/*Validando digitos do cpf*/
+			Map<String, String> cpfDados = geradorCpfService.gerarDigitosCpf(cpfDigitado, pontuacao);
+			redirectAttributes.addFlashAttribute("cpf", cpfDados.get("cpf"));
+			
+			//testando se o cpf digitado é valido
+			if(cpfDados.get("isModificado").equalsIgnoreCase("true")) {
+				redirectAttributes.addFlashAttribute("msgvalido", "O CPF informado estava com os dígitos "
+						+ "incorretos, então ajustamos isso pra você!");
+			}else {
+				redirectAttributes.addFlashAttribute("msgvalido","O CPF informado está correto!");
+			}
 		}
 		return "redirect:/";
 	}
