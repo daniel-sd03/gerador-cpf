@@ -11,4 +11,7 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 	
 	@Query("Select COUNT(u) > 0 from Usuario u where u.login = ?1")
 	boolean existByLogin(String login);
+	
+	@Query("Select u from Usuario u where u.login = ?1")
+	Usuario findUserByLogin(String login);
 }
