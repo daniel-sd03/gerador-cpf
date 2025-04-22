@@ -19,6 +19,7 @@
 		<br> <br>
 		<form action="/gerar-cpf-aleatorio" onsubmit="return validarCampos() ? true : false" 
 			method="post" class="col s12">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 			<div id="mensagemErro" th:text="${msgErro}" style="color: red;"></div>
 			<div id="mensagemValido" th:text="${msgvalido}" style="color: green;"></div>
 			<div class="row cpfale">
