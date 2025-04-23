@@ -29,6 +29,6 @@ public class CadastroController {
 			return"redirect:/cadastro";
 		}
 		usuarioService.salvarUsuario(usuario);
-		return "redirect:/cadastro";
+		return "redirect:/login";
 	}
 }
