@@ -1,0 +1,17 @@
+header{
+	background-color: #1e4645;
+	height: 70px;
+	 display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.titulo-head {
+    flex: 1; 
+    text-align: left;
+    margin-bottom: 20px;
+    font-family: 'Tomorrow', sans-serif;
+    font-size: 24px;
+    color: white;
+}
