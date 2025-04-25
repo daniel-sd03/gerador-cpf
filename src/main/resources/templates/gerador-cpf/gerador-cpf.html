@@ -8,9 +8,6 @@
 <!-- Materialize CDN  CSS -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<!-- Materialize CDN JavaScript -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -87,38 +84,49 @@
 			</div>
 		</form>
 	</div>
-	<script type="text/javascript">
-		//pegando qual botão foi clicado
-		botaoClicado = "";
-		document.getElementById("btnGerar").addEventListener("click", () => {
-			  botaoClicado = "Gerar";
-			});
-		document.getElementById("btnValidar").addEventListener("click", () => {
-			  botaoClicado = "validar";
-			});
-		
-		/*Validando campo para o botão "validar" */
-		function validarCampos() {
-			if(botaoClicado == "validar"){
-				const cpfDigitado = document.getElementById('cpf').value
-						.trim();
-				const mensagemErro = document.getElementById('mensagemErro');
 	
-				/* Valida vazio, numeros e tamanho */
+<!-- Materialize CDN JavaScript -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function () {
+		// Inicializa o SELECT do Materialize
+		var elems = document.querySelectorAll('select');
+		M.FormSelect.init(elems);
+
+		// Variável global
+		let botaoClicado = "";
+
+		// Eventos dos botões
+		const btnGerar = document.getElementById("btnGerar");
+		if (btnGerar) {
+			btnGerar.addEventListener("click", () => {
+				botaoClicado = "Gerar";
+			});
+		}
+
+		const btnValidar = document.getElementById("btnValidar");
+		if (btnValidar) {
+			btnValidar.addEventListener("click", () => {
+				botaoClicado = "validar";
+			});
+		}
+
+		// Função de validação do formulário
+		window.validarCampos = function () {
+			if (botaoClicado === "validar") {
+				const cpfDigitado = document.getElementById('cpf').value.trim();
+				const mensagemErro = document.getElementById('mensagemErro');
+
 				if (!(/^\d{1,11}$/.test(cpfDigitado))) {
-					mensagemErro.innerHTML = "Formato inválido! <br> Obeservação: Digite apenas numero, e "
-											+"certifique-se de que há pelo menos 9 dígitos.";
+					mensagemErro.innerHTML =
+						"Formato inválido! <br> Observação: Digite apenas números, e certifique-se de que há pelo menos 9 dígitos.";
 					return false;
 				}
 			}
 			return true;
-		}
-
-		// ESTE BLOCO INICIALIZA O SELECT
-		document.addEventListener('DOMContentLoaded', function() {
-			var elems = document.querySelectorAll('select');
-			M.FormSelect.init(elems);
-		});
+		};
+	});
 	</script>
 </body>
 </html>
