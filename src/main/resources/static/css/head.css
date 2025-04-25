@@ -15,3 +15,11 @@ header{
     font-size: 24px;
     color: white;
 }
+
+.botoes {
+    flex: 1; 
+    text-align: right;
+    display: flex; 
+    justify-content: flex-end;
+    gap: 15px;
+}
