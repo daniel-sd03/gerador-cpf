@@ -30,10 +30,11 @@ public class WebConfigSecurity {
             .authorizeHttpRequests(auth -> auth
                     .anyRequest().permitAll()//perminto acesso a todas as paginas
             )
-            .formLogin(login -> login //pagina de login padrão do spring security
+            .formLogin(login -> login 
+            		.loginPage("/login")
             		.permitAll()
-                .defaultSuccessUrl("/", true)
-                .failureUrl("/login?erro=true")
+	                .defaultSuccessUrl("/", true)
+	                .failureUrl("/login?erro=true")
             )
             .logout(logout -> logout
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
