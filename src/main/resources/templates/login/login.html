@@ -42,6 +42,9 @@
 				</div>
 			</div>
 			<div id="mensagemErro" th:text="${mensagemErro}" style="color: red"></div>
+			<div th:if="${param.erro}" style="color:red;">
+			    Usuário ou senha inválidos.
+			</div>
 			<div class="row">
 			  	<div class="input-field col s12">
 					<input class="waves-effect waves-light btn" type="submit" value="Entrar">
@@ -53,8 +56,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	<script type="text/javascript">
 		function validarCampos(){
-			const login = document.getElementById('login').value.trim();
-			const senha =  document.getElementById('senha').value.trim();
+			const login = document.getElementById('username').value.trim();
+			const senha =  document.getElementById('password').value.trim();
 		  	const mensagemErro = document.getElementById('mensagemErro');
 			
 		  	//not null
