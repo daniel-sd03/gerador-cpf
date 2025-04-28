@@ -18,8 +18,12 @@
 	        <h1>Sodré Softwares</h1> 
 		 </div>
 		 <div class="botoes">
-			<input class="waves-effect waves-light btn"  onclick="window.location.href='/cadastro'" type="submit" value="Cadastro">
-			<input class="waves-effect waves-light btn"  onclick="window.location.href='/login'" type="submit" value="Login">
+			<input class="waves-effect waves-light btn"  onclick="window.location.href='/cadastro'" 
+			type="submit" value="Cadastro" sec:authorize="!isAuthenticated()">
+			<input class="waves-effect waves-light btn"  onclick="window.location.href='/login'" 
+			type="submit" value="Login" sec:authorize="!isAuthenticated()">
+			<input class="waves-effect waves-light btn"  onclick="window.location.href='/logout'" 
+			type="submit" value="Sair" sec:authorize="isAuthenticated()">
 		</div>
 	</header>
 	<div class="container">
