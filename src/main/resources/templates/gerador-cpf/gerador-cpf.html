@@ -100,10 +100,15 @@
 				</div>
 			</div>
 		</form>
+		<div sec:authorize="!isAuthenticated()" class="login-promove">
+			<h2>Faça seu login!</h2>
+			 <p>Ao fazer login, você terá acesso exclusivo às funcionalidades de validação e criação
+			    de CPFs personalizados. Não perca tempo <a href="/login" class="login-link">faça login agora</a> 
+			    e aproveite todos os recursos disponíveis!</p>
+		</div>
 	</div>
-	
-<!-- Materialize CDN JavaScript -->
-<script
+	<!-- Materialize CDN JavaScript -->
+	<script
 	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	<script type="text/javascript">
 	document.addEventListener('DOMContentLoaded', function () {
