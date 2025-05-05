@@ -10,7 +10,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sodresoftwares.geradorcpf.service.GeradorCpfService;
 
-
 @Controller
 public class GeradorCpfController {
 	
@@ -44,7 +43,7 @@ public class GeradorCpfController {
 			//testando se o cpf digitado é valido
 			if(cpfDados.get("isModificado").equalsIgnoreCase("true")) {
 				redirectAttributes.addFlashAttribute("msgvalido", "O CPF informado estava com os dígitos "
-						+ "incorretos, então ajustamos isso pra você!");
+						+ "incorretos, então ajustamos isso para você!");
 			}else {
 				redirectAttributes.addFlashAttribute("msgvalido","O CPF informado está correto!");
 			}

@@ -102,9 +102,11 @@
 		</form>
 		<div sec:authorize="!isAuthenticated()" class="login-promove">
 			<h2>Faça seu login!</h2>
-			 <p>Ao fazer login, você terá acesso exclusivo às funcionalidades de validação e criação
+			 <p>
+			 	Ao fazer login, você terá acesso exclusivo às funcionalidades de validação e criação
 			    de CPFs personalizados. Não perca tempo <a href="/login" class="login-link">faça login agora</a> 
-			    e aproveite todos os recursos disponíveis!</p>
+			    e aproveite todos os recursos disponíveis!
+			 </p>
 		</div>
 	</div>
 	<!-- Materialize CDN JavaScript -->
@@ -126,14 +128,12 @@
 				botaoClicado = "Gerar";
 			});
 		}
-
 		const btnValidar = document.getElementById("btnValidar");
 		if (btnValidar) {
 			btnValidar.addEventListener("click", () => {
 				botaoClicado = "validar";
 			});
 		}
-
 		// Função de validação do formulário
 		window.validarCampos = function () {
 			if (botaoClicado === "validar") {
