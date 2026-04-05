@@ -19,7 +19,7 @@ Este sistema foi desenvolvido com Java e Spring. A validação do usuário e a e
 
 # 🏗 Arquitetura do Sistema
 
-![Arquitetura do Sistema](docs/gerador-cpf-diagrama.svg)
+![Arquitetura do Sistema](docs/gerador-cpf-diagrama.webp)
 
 ## 🔄 Descrição dos Fluxos
 
